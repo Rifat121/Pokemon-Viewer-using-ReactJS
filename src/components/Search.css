@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .header {
   background-color: #333;
   color: #fff;
@@ -60,3 +61,67 @@
   color: #eeeeee;
   cursor: pointer;
 }
+=======
+.header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+.header h1 {
+  margin-left: 40%;
+  width: 0ch;
+  color: rgb(244, 228, 228);
+  /* overflow: hidden; */
+  white-space: nowrap;
+  animation: text 5s steps(10) infinite alternate;
+}
+@keyframes text {
+  0% {
+    width: 0ch;
+  }
+  40% {
+    width: 8ch;
+    color: rgb(254, 233, 227);
+  }
+  80% {
+    width: 16ch;
+    color: #ffcc00;
+  }
+}
+
+.search-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.search-box {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 300px;
+}
+
+.search-button {
+  font-family: inherit;
+  padding: 10px 18px;
+  background-color: #ffcc00;
+  border: none;
+  border-radius: 10px;
+  color: #333;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.revert-button {
+  font-family: inherit;
+  margin-left: 10px;
+  padding: 10px 20px;
+  background-color: #e72121;
+  border: none;
+  border-radius: 10px;
+  color: #eeeeee;
+  cursor: pointer;
+}
+>>>>>>> ea50365 (Adding all the files)
