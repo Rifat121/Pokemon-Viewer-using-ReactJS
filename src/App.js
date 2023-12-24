@@ -21,9 +21,10 @@ function App() {
     pokemon = allPokemons.find((item) => item.id === pokeID);
   };
   const searchText = (inputText) => {
+    
     if (inputText.length === 0) setSearchedData([]);
     let data = allPokemons.filter((pokemon) => {
-      return pokemon.name === inputText;
+      return pokemon.name === inputText.toLowerCase();
     });
     setSearchedData(data);
     inputText.length > 0 ? setSearched(true) : setSearched(false);
