@@ -83,6 +83,8 @@ const PokeDetails = ({
   name,
   image,
   type,
+  baseExp,
+  ability,
   height,
   weight,
   stat1,
@@ -127,6 +129,8 @@ const PokeDetails = ({
         <img className="right-img" src={image} alt="Right-Content" />
         <div className="card-title">{name.toUpperCase()}</div>
         <div className="description">
+          <div>Base Exp: {baseExp}</div>
+          <div>Ability: {ability.toUpperCase()}</div>
           <div>Height: {height * 10}cm.</div>
           <div>Weight: {weight * 0.1} kg</div>
           <div className="card-strength">

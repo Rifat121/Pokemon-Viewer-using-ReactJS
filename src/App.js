@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import { useEffect, useState } from "react";
 import "./App.css";
 import PokeDetails from "./components/PokeDetails";
@@ -9,11 +10,26 @@ function App() {
   const [loadPoke, setLoadPoke] = useState(
     "https://pokeapi.co/api/v2/pokemon?limit=20"
   );
+  const [inputText, setInputText] = useState("");
+  const [searched, setSearched] = useState(false);
+  const [searchedData, setSearchedData] = useState([]);
+
   const [pokeID, setpokeID] = useState(1);
   let pokemon = allPokemons.find((item) => item.id === pokeID);
   const handlePokeID = (index) => {
     setpokeID(index);
     pokemon = allPokemons.find((item) => item.id === pokeID);
+  };
+  const searchText = (inputText) => {
+    if (inputText.length === 0) setSearchedData([]);
+    let data = allPokemons.filter((pokemon) => {
+      return pokemon.name === inputText;
+    });
+    setSearchedData(data);
+    inputText.length > 0 ? setSearched(true) : setSearched(false);
+  };
+  const revertSearch = () => {
+    setSearchedData([]);
   };
   const getAllPokemons = async () => {
     const res = await fetch(loadPoke);
@@ -38,20 +54,42 @@ function App() {
 
   return (
     <div className="container">
-      <Search />
+      <Search
+        handleSearch={searchText}
+        handleRevert={revertSearch}
+        inputText={inputText}
+        setInputText={setInputText}
+      />
       <div className="main-container">
         <div id="left">
-          {allPokemons.map((pokemon, index) => (
-            <PokeCard
-              id={pokemon.id}
-              name={pokemon.name}
-              image={pokemon.sprites.other.dream_world.front_default}
-              type={pokemon.types[0].type.name}
-              key={index}
-              handleClick={handlePokeID}
-            />
-          ))}
-          <button className="load-more" onClick={() => getAllPokemons()}>
+          {!searched && searchedData.length === 0 ? (
+            allPokemons.map((pokemon, index) => (
+              <PokeCard
+                id={pokemon.id}
+                name={pokemon.name}
+                image={pokemon.sprites.other.dream_world.front_default}
+                type={pokemon.types[0].type.name}
+                key={index}
+                handleClick={handlePokeID}
+              />
+            ))
+          ) : searchedData.length === 0 && searched ? (
+            <>
+              <div>Sorry! No Pokemon found...</div>
+            </>
+          ) : (
+            searchedData.map((pokemon, index) => (
+              <PokeCard
+                id={pokemon.id}
+                name={pokemon.name}
+                image={pokemon.sprites.other.dream_world.front_default}
+                type={pokemon.types[0].type.name}
+                key={index}
+                handleClick={handlePokeID}
+              />
+            ))
+          )}
+          <button className="load-more" onClick={getAllPokemons}>
             More Pokemons
           </button>
         </div>
@@ -61,7 +99,9 @@ function App() {
           ) : (
             <PokeDetails
               name={pokemon.name}
-              image={pokemon.sprites.other.dream_world.front_default}
+              image={pokemon.sprites.other.home.front_shiny}
+              baseExp={pokemon.base_experience}
+              ability={pokemon.abilities[0].ability.name}
               type={pokemon.types[0].type.name}
               height={pokemon.height}
               weight={pokemon.weight}
