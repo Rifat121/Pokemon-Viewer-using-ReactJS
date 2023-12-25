@@ -44,7 +44,7 @@ const PokeDetails = ({
   return (
     <>
       <div className="pokemonDetails">
-        <h2 className="title">Pokemon Details</h2>
+        <h2 className="title">POKEMON Details</h2>
       </div>
       <div className={style}>
         <img className="right-img" src={image} alt="Right-Content" />

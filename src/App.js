@@ -21,16 +21,17 @@ function App() {
     pokemon = allPokemons.find((item) => item.id === pokeID);
   };
   const searchText = (inputText) => {
-    
     if (inputText.length === 0) setSearchedData([]);
     let data = allPokemons.filter((pokemon) => {
-      return pokemon.name === inputText.toLowerCase();
+      return pokemon.name.includes(inputText.toLowerCase());
     });
     setSearchedData(data);
     inputText.length > 0 ? setSearched(true) : setSearched(false);
   };
   const revertSearch = () => {
+    console.log(allPokemons);
     setSearchedData([]);
+    setSearched(false);
   };
   const getAllPokemons = async () => {
     const res = await fetch(loadPoke);
@@ -51,6 +52,7 @@ function App() {
   };
   useEffect(() => {
     getAllPokemons();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -90,9 +92,11 @@ function App() {
               />
             ))
           )}
-          <button className="load-more" onClick={getAllPokemons}>
-            More Pokemons
-          </button>
+          {!searched && (
+            <button className="load-more" onClick={getAllPokemons}>
+              Load More Pokemons...
+            </button>
+          )}
         </div>
         <div id="right">
           {pokemon === undefined ? (

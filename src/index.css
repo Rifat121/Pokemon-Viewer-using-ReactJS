@@ -119,6 +119,7 @@ code {
 
 h3 {
   margin-bottom: 0.2rem;
+  
 }
 .thumb-container .number {
   border-radius: 1rem;
@@ -150,7 +151,17 @@ h3 {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.185);
 }
-.load-more {
+
+.load-more{
+      padding: 10px 15px;
+      border-radius: 25px;
+      font-family: inherit;
+      background-color: #202b3d;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+}
+/* .load-more {
   background-color: #76daff;
   background-image: linear-gradient(315deg, #76daff 0%, #fcd000 74%);
   border-radius: 6px;
@@ -159,7 +170,7 @@ h3 {
   padding: 0.5rem 1.5rem;
   min-width: 20%;
   margin-top: 1rem;
-}
+} */
 button:hover {
   background-color: #ff0000;
   background-image: linear-gradient(315deg, #ff0000 0%, #ffed00 74%);
@@ -178,9 +189,7 @@ button:hover {
     #faaca8 100%
   );
 }
-h3 {
-  text-decoration: underline;
-}
+
 
 .description {
   text-align: left;

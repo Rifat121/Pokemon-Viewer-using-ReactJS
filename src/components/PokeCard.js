@@ -13,7 +13,7 @@ const PokeCard = ({ id, name, image, type, handleClick }) => {
         </div>
         <img src={image} alt={name} />
         <div className="detail-wrapper">
-          <h3>{name}</h3>
+          <h3>{name.charAt(0).toUpperCase() + name.slice(1)}</h3>
           <small>Type : {type}</small>
           <button className="pokeinfo" onClick={handlePokeID}>
             Show Details
